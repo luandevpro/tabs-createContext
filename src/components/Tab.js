@@ -1,16 +1,22 @@
-import React, { Component } from 'react'
+import React, { Component , Fragment} from 'react'
 
 export default class Tab extends Component {
   render() {
-   var { isActive ,children ,onSelect , data } = this.props
-   console.log(data)
+   var { activeIndex ,onSelected , data } = this.props
    return (
-      <div
-         className={isActive ? "tab active" : "tab"}
-         onClick={() => onSelect()}
-      >
-         { children }
-      </div>
+      <Fragment>
+         {
+            data.map((data,index) => (
+               <div
+                  key={index}
+                  className={activeIndex === index ? "tab active" : "tab"}
+                  onClick={() => onSelected(index)}
+               >
+                  {data.label}
+               </div>
+            ))
+         }
+      </Fragment>
     )
   }
 }

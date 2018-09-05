@@ -1,54 +1,20 @@
 import React, { Component } from 'react';
 import Tabs from './components/Tabs';
-import * as text from './text'
-import {FaCar,FaBed,FaPlane,FaSpaceShuttle} from "react-icons/fa"
-import TabPanel from './components/TabPanel';
-import Tab from './components/Tab';
+import AppProvider from './AppProvider';
 
 class App extends Component {
-   state = {
-      activeIndex: 0
-   }
-   onSelect = (index) => {
-      this.setState(() => {
-         return {
-            activeIndex: index
-         }
-      })
-   }
   render() {
-   const data = [
-      {
-        label: <FaCar />,
-        content: text.cars
-      },
-      {
-        label: <FaBed />,
-        content: text.hotels
-      },
-      {
-        label: <FaPlane />,
-        content: text.flights
-      },
-      {
-        label: <FaSpaceShuttle />,
-        content: text.space
-      }
-    ]
-    return (
-      <div className="App">
+   return (
+      <AppProvider>
           <Tabs>
             <Tabs.TabList>
-               {
-                  data.map((data,index) => <Tab key={index}>{data.label}</Tab>)
-               }
+              <Tabs.TabContainer/>
             </Tabs.TabList>
             <Tabs.TabPanels>
-               <TabPanel>
-               </TabPanel>
+               <Tabs.TabPanelContainer/>
             </Tabs.TabPanels>
           </Tabs>
-      </div>
+      </AppProvider>
     );
   }
 }
